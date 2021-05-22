@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Mis clientes",
+        "icon": "bag",
+        "redirectTo": ""
+    },
+    {
+        "name": "Mi Configuración",
+        "icon": "build",
+        "redirectTo": ""
+    }
+]
