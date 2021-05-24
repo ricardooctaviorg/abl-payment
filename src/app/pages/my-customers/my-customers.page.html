@@ -1,0 +1,17 @@
+<app-header-menu titleMain="{{ titleMain | uppercase }} {{ titleSecondary }}"></app-header-menu>
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar color="light" slot="bottom">
+      <ion-tab-button [tab]="">
+        <ion-icon name="{{ iconMorning | icon }}"></ion-icon>
+        <ion-label>MAÑANA</ion-label>
+        <ion-badge class="fontSizeNew" *ngIf="countPendingStatus > 0" color="tertiary">{{ countMorning }}</ion-badge>
+      </ion-tab-button>
+      <ion-tab-button [tab]="">
+        <ion-icon name="{{ iconAfternoon | icon }}"></ion-icon>
+        <ion-label>TARDE</ion-label>
+        <ion-badge class="fontSizeNew" *ngIf="countConfirmedStatus > 0" color="tertiary">{{ countAfternoon }}</ion-badge>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

@@ -7,6 +7,10 @@ const routes: Routes = [
     redirectTo: '',
     pathMatch: 'full'
   },
+  {
+    path: 'my-customers',
+    loadChildren: () => import('./pages/my-customers/my-customers.module').then( m => m.MyCustomersPageModule)
+  }
 ];
 
 @NgModule({
