@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Actualizar Clientes"
+      refreshingSpinner="circular" refreshingText="Actualizando Clientes">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list [ngSwitch]="emptyList">
+    <ion-item *ngSwitchCase="'a'" lines="none">
+      <ion-label>
+        <ion-text color="medium" class="ion-align-items-center ion-justify-content-center ion-text-center">
+          <h3>NO HAY ORDENES CLIENTES</h3>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="1px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Consultando Mas Clientes">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-//import { Delivery } from '../interfaces/delivery';
+import { Customer } from '../interfaces/customer';
+
 
 @Injectable({
   providedIn: 'root'
@@ -7,75 +8,76 @@ import { Injectable } from '@angular/core';
 export class StorageService {
 
   private localStorageService;
-  //private deliveries            :Delivery[] = new Array();
+  private customers: Customer[] = new Array();
 
-  constructor() { 
+  constructor() {
     this.localStorageService = localStorage;
   }
 
-  clearLocalStorage(){
+  clearLocalStorage() {
     const darkThemeCurrent = this.getDarkTheme();
     this.localStorageService.clear();
     this.updateDarkTheme(darkThemeCurrent);
   }
 
-  /*setDeliveries(deliveries : Delivery[]):void{
-    this.localStorageService.setItem('deliveries', JSON.stringify(deliveries));
-  }*/
+  setCustomers(customers: Customer[]): void {
+    this.localStorageService.setItem('customers', JSON.stringify(customers));
+  }
 
-  updateDarkTheme(darkTheme:string):void{
+  getCustomers(): any {
+    return JSON.parse(this.localStorageService.getItem('customers'));
+  }
+
+  getCustomersById(id: string): Customer {
+    this.customers = this.getCustomers() as Customer[];
+    for (let a of this.customers)
+      if (a.id == id)
+        return a;
+  }
+
+  updateDarkTheme(darkTheme: string): void {
     this.localStorageService.setItem('darkTheme', darkTheme);
   }
 
-  updateBasicLocalStorage(avatar: string, name: string){
+  updateBasicLocalStorage(avatar: string, name: string) {
     this.setAvatar(avatar);
     this.setName(name);
   }
 
-  setUserId(userId:string):void{
+  setUserId(userId: string): void {
     this.localStorageService.setItem('userId', userId);
   }
 
-  setName(name:string):void{
+  setName(name: string): void {
     this.localStorageService.setItem('name', name);
   }
 
-  setToken(token:string):void{
+  setToken(token: string): void {
     this.localStorageService.setItem('token', token);
   }
 
-  setAvatar(avatar:string):void{
+  setAvatar(avatar: string): void {
     this.localStorageService.setItem('avatar', avatar);
   }
 
-  getToken():string{
+  getToken(): string {
     return this.localStorageService.getItem('token');
   }
 
-  getUserId():string{
+  getUserId(): string {
     return this.localStorageService.getItem('userId');
   }
 
-  getName():string{
+  getName(): string {
     return this.localStorageService.getItem('name');
   }
 
-  getAvatar():string{
+  getAvatar(): string {
     return this.localStorageService.getItem('avatar');
   }
 
-  getDarkTheme():string{
+  getDarkTheme(): string {
     return this.localStorageService.getItem('darkTheme');
   }
 
-  getDeliveries():any{
-    return JSON.parse(this.localStorageService.getItem('deliveries'));
-  }
-
-  /*getDeliveryByDeliveryId(deliveryId:string):Delivery{
-    this.deliveries = JSON.parse(this.localStorageService.getItem('deliveries')) as Delivery[];
-    for(let a of this.deliveries)
-      if(a.deliveryId == deliveryId)
-        return a;
-  }*/
 }
