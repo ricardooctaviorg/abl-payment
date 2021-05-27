@@ -2,12 +2,12 @@
 <ion-content>
   <ion-tabs>
     <ion-tab-bar color="light" slot="bottom">
-      <ion-tab-button [tab]="">
+      <ion-tab-button [tab]="routeMorning">
         <ion-icon name="{{ iconMorning | icon }}"></ion-icon>
         <ion-label>MAÑANA</ion-label>
         <ion-badge class="fontSizeNew" *ngIf="countMorning > 0" color="tertiary">{{ countMorning }}</ion-badge>
       </ion-tab-button>
-      <ion-tab-button [tab]="">
+      <ion-tab-button [tab]="routeAfternoon">
         <ion-icon name="{{ iconAfternoon | icon }}"></ion-icon>
         <ion-label>TARDE</ion-label>
         <ion-badge class="fontSizeNew" *ngIf="countAfternoon > 0" color="tertiary">{{ countAfternoon }}</ion-badge>

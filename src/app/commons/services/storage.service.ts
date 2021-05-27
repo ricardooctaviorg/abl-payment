@@ -31,7 +31,7 @@ export class StorageService {
   getCustomersById(id: string): Customer {
     this.customers = this.getCustomers() as Customer[];
     for (let a of this.customers)
-      if (a.id == id)
+      if (a._id == id)
         return a;
   }
 

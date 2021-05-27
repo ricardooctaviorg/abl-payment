@@ -43,17 +43,17 @@ export class CustomerService {
 
   public getCostomers(
     status      : string[]
-    , schedulle : string[]
+    , schedule  : string[]
     , page      : string
     , size      : string
     , sort      : string): Observable<any> {
 
-    const headers = new HttpHeaders()
-      .set(KEY_TOKEN, this.storageService.getToken());
+    const headers = new HttpHeaders();
+      //.set(KEY_TOKEN, this.storageService.getToken());
     
       const params = new HttpParams()
       .set('status', status.toString())
-      .set('schedulle', schedulle.toString())
+      .set('schedule', schedule.toString())
       .set('page', page)
       .set('size', size)
       .set('sort', sort);

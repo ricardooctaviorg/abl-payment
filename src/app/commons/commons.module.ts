@@ -5,6 +5,7 @@ import { HeaderMenuComponent } from './components/header-menu/header-menu.compon
 import { PrettyPhonePipe } from './pipes/pretty-phone.pipe';
 import { IonicModule } from '@ionic/angular';
 import { IconPipe } from './pipes/icon.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { IconPipe } from './pipes/icon.pipe';
   imports: [
     CommonModule
     , IonicModule
+    , HttpClientModule
   ]
   ,exports:[
     HeaderComponent
