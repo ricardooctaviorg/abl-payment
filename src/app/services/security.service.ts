@@ -8,27 +8,35 @@ import { NavController } from '@ionic/angular';
 import { InfoUserService } from '../commons/services/info-user.service';
 import { environment } from '../../environments/environment';
 
-const GATEWAY_VALUE     = environment.gateway;
-const SECURITY_RESOURCE = environment.securityResource;
+const GATEWAY                   = environment.gateway;
+const RESOURCE_BASE             = environment.securityResource;
+const KEY_TOKEN                 = environment.keyToken;
 
-const USERREGISTER = GATEWAY_VALUE
-  + SECURITY_RESOURCE
-  + '/userRegister';
+const RESOURCE_CREATE           = "/userRegister";
+const RESOURCE_UPDATE           = "/userUpdate";
 
-const LOGIN = GATEWAY_VALUE
-  + SECURITY_RESOURCE
-  + '/login';
+const RESOURCE_LOGIN            = "/login";
+const RESOURCE_EXISTUSERBYROLE  = "existUserbyRole"
 
-const USERUPDATE = GATEWAY_VALUE
-  + SECURITY_RESOURCE
-  + '/updateuser';
+const ENDPOINT_CREATE 
+  = GATEWAY
+  + RESOURCE_BASE + RESOURCE_CREATE ;
 
-const VERIFYTOKEN = GATEWAY_VALUE
-  + SECURITY_RESOURCE;
+const ENDPOINT_LOGIN 
+  = GATEWAY
+  + RESOURCE_BASE + RESOURCE_LOGIN ;
 
-const EXISTUSERBYROLE = GATEWAY_VALUE
-  + SECURITY_RESOURCE
-  + '/existUserbyRole';
+const ENDPOINT_UPDATE 
+  = GATEWAY
+  + RESOURCE_BASE + RESOURCE_UPDATE ;
+
+const VERIFYTOKEN 
+  = GATEWAY
+  + RESOURCE_BASE ;
+
+const ENDPOINT_EXISTUSERBYROLE 
+  = GATEWAY
+  + RESOURCE_BASE + RESOURCE_EXISTUSERBYROLE;
 
 const headers = new HttpHeaders()
   .set('Contet-Type', 'application/json');
@@ -56,7 +64,7 @@ export class SecurityService {
   public registerAgent(user: User): Promise<number> {
     return new Promise(
       resolve => {
-        this.httpClient.post<any>(`${USERREGISTER}`, user, httpOptions).subscribe(
+        this.httpClient.post<any>(`${ENDPOINT_CREATE}`, user, httpOptions).subscribe(
           async (data) => {
             if (data.success) {
               await this.saveToken(data.token);
@@ -93,7 +101,7 @@ export class SecurityService {
     return new Promise(
       resolve => 
         {
-        this.httpClient.post<any>(`${LOGIN}`, data, httpOptions).subscribe(
+        this.httpClient.post<any>(`${ENDPOINT_LOGIN}`, data, httpOptions).subscribe(
           async (data) => {
             if (data.success) {
               await this.saveToken(data.token);
@@ -120,14 +128,14 @@ export class SecurityService {
   public updateAgentDelivery(user: User) {
 
     const headers = new HttpHeaders()
-      .set('x-token', this.storageService.getToken());
+      .set(KEY_TOKEN, this.storageService.getToken());
     const httpOptionsX =
     {
       headers
     };
 
     return new Promise((resolve) => {
-      return this.httpClient.post(`${USERUPDATE}`, user, httpOptionsX).subscribe(
+      return this.httpClient.post(`${ENDPOINT_UPDATE}`, user, httpOptionsX).subscribe(
         (data) => {
           if (data['success']) {
             this.saveToken(data['token']);
@@ -188,7 +196,7 @@ export class SecurityService {
 
     return new Promise<boolean>(
       resolve =>{
-        this.httpClient.get<any>(`${EXISTUSERBYROLE}`, httpOptionsX).subscribe(
+        this.httpClient.get<any>(`${ENDPOINT_EXISTUSERBYROLE}`, httpOptionsX).subscribe(
           data =>
           {
             if(data.length == 0)
