@@ -1,3 +1,6 @@
+.browserslistrc
+.editorconfig
+.eslintrc.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,angular,ionic3,visualstudiocode,android,androidstudio,swift,macos,apachecordova,cordova
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,angular,ionic3,visualstudiocode,android,androidstudio,swift,macos,apachecordova,cordova

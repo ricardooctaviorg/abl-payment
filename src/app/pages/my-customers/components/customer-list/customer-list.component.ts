@@ -5,11 +5,14 @@ import { Customer } from '../../../../commons/interfaces/customer';
 import { StorageService } from '../../../../commons/services/storage.service';
 import { CustomerService } from '../../../../services/customer.service';
 
-const PAGE_SIZE   = 10;
-const ORDER       = "name,-1";
+const PAGE_SIZE     = 10;
+const ORDER         = "name,-1";
 
-const SUCCESS_TRUE    = true;
-const SUCCESS_FALSE   = false;
+const AVATAR_MALE   = "https://www.gravatar.com/userimage/198148610/9557a41195e40455d045b52ec8107418?size=120";
+const AVATAR_FEMALE = "https://www.gravatar.com/userimage/198148610/0da9921b30af847359c2e2d61169e484?size=120";
+
+const SUCCESS_TRUE  = true;
+const SUCCESS_FALSE = false;
 
 @Component({
   selector: 'app-customer-list',
@@ -37,6 +40,9 @@ export class CustomerListComponent implements OnInit {
 
   statusArray             : string[];
   scheduleArray           : string[];
+
+  avatarMale              : string      = AVATAR_MALE;
+  avatarFemale            : string      = AVATAR_FEMALE;
   
   constructor(private storageService      : StorageService
                 , private customerService : CustomerService
