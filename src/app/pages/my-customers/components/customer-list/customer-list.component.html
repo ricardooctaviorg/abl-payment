@@ -4,11 +4,18 @@
       refreshingSpinner="circular" refreshingText="Actualizando Clientes">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-list [ngSwitch]="emptyList">
-    <ion-item *ngSwitchCase="'a'" lines="none">
+  <ion-list [ngSwitch]="isEmptyList">
+    <ion-item *ngSwitchCase="'empty_morning'" lines="none">
       <ion-label>
         <ion-text color="medium" class="ion-align-items-center ion-justify-content-center ion-text-center">
-          <h3>NO HAY ORDENES CLIENTES</h3>
+          <h3> SIN CLIENTES EN LA MAÑANA </h3>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngSwitchCase="'empty_afternoon'" lines="none">
+      <ion-label>
+        <ion-text color="medium" class="ion-align-items-center ion-justify-content-center ion-text-center">
+          <h3> SIN CLIENTES EN LA TARDE </h3>
         </ion-text>
       </ion-label>
     </ion-item>
